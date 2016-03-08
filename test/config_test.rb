@@ -9,6 +9,11 @@ class ConfigTest < Minitest::Test
     @config = Thyme::Config.new
   end
 
+  def test_get
+    assert_equal('default', @config.break_color)
+    assert_equal('default', @config.get(:break_color))
+  end
+
   def test_set
     assert_equal('default', @config.break_color)
     @config.set(:break_color, 'red')

@@ -33,6 +33,7 @@ module Thyme
       return if block.nil? && !File.exists?(Config::CONFIG_FILE)
       config = @config
       environment = Class.new do
+        define_method(:get) { |opt| config.get(opt) }
         define_method(:set) { |opt,val| config.set(opt,val) }
         define_method(:use) { |plugin,*args,&b| config.use(plugin,*args,&b) }
         define_method(:before) { |*args,&block| config.before(*args,&block) }

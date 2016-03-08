@@ -31,6 +31,11 @@ module Thyme
       @repeat_index = 1
     end
 
+    def get(opt)
+      raise Thyme::Error.new("Invalid option: #{opt}") if !self.instance_variables.include?("@#{opt}".to_sym)
+      self.instance_variable_get("@#{opt}")
+    end
+
     def set(opt, val)
       raise Thyme::Error.new("Invalid option: #{opt}") if !OPTIONS.include?(opt.to_sym)
       self.instance_variable_set("@#{opt}", val)
